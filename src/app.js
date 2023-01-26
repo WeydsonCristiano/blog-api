@@ -1,5 +1,4 @@
 const express = require('express');
-// iniciando projeto blogs.
 
 // ...
 
