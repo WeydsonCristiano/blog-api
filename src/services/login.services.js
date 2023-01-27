@@ -1,11 +1,10 @@
-const { getLogin } = require('../controllers/login.controller');
-const loginModel = require('../models/login');
+const { User } = require('../models');
 
-const GetLogin = async () =>
-  loginModel.findAll({
-    include: { model: getLogin, as: 'login' },
+const PostLogin = async (email, password) =>
+  User.findOne({
+    Where: { email, password },
   });
 
 module.exports = {
-    GetLogin,
+    PostLogin,
 };

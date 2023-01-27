@@ -1,5 +1,3 @@
-
-
 const UsersSchema = (sequelize, DataTypes) => {
     const UserTable = sequelize.define('User',{
         id:{
