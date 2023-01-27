@@ -4,9 +4,9 @@ const UserSchema = (sequelize, DataTypes) => {
     {
       id: {
         type: DataTypes.INTEGER,
-        allowNull: false,
         primaryKey: true,
         autoIncrement: true,
+        allowNull: false,
       },
       displayName: {
         type: DataTypes.STRING,
