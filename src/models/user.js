@@ -1,29 +1,41 @@
-const UsersSchema = (sequelize, DataTypes) => {
-    const UserTable = sequelize.define('User',{
-        id:{
-            type: DataTypes.INTERGE,
-            allowNull: false,
-            primaryKey: true,
-            autoIncrement:true,
-        },
-            displayName: DataTypes.STRING,
-            email: DataTypes.STRING,
-            password: DataTypes.STRING,
-            image: DataTypes.STRING,
-        }, {
-            tableName: 'users',
-            underscored: true,
-            timestamps:false
-        })
-        
-    UserTable.associate = (models) => {
-        UserTable.belongsTo(models.User, {
-            as: 'user',
-            foreignKey: 'id_users'
-        })
+const UserSchema = (sequelize, DataTypes) => {
+  const User = sequelize.define(
+    "User",
+    {
+      id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        primaryKey: true,
+        autoIncrement: true,
+      },
+      displayName: {
+        type: DataTypes.STRING,
+      },
+      email: {
+        type: DataTypes.STRING,
+      },
+      password: {
+        type: DataTypes.STRING,
+      },
+      image: {
+        type: DataTypes.STRING,
+      },
+    },
+    {
+      tableName: "users",
+      underscored: true,
+      timestamps: false,
     }
+  );
 
-    return UserTable
-}
+  User.associate = (models) => {
+    User.belongsTo(models.User, {
+      as: "user",
+      foreignKey: "id",
+    });
+  };
 
-module.exports = UsersSchema
+  return User;
+};
+
+module.exports = UserSchema;

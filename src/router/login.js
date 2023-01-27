@@ -1,9 +1,10 @@
 const { Router } = require('express');
 
 const loginController = require('../controllers/login.controller');
+const verif = require('../middleWare/verifEmailPassw');
 
 const routers = Router();
 
-routers.post('/', loginController.postLogin);
+routers.post('/', verif, loginController);
 
 module.exports = routers;
