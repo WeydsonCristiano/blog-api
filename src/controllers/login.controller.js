@@ -1,8 +1,6 @@
 require('dotenv/config');
-const jwt = require('jsonwebtoken');
 const loginService = require('../services/login.service');
-
-const secret = process.env.JWT_SECRET || 'seusecretdetoken';
+const { generateToken } = require('../utis/JWT');
 
 module.exports = async (req, res) => {
   try {
@@ -13,11 +11,9 @@ module.exports = async (req, res) => {
         message: 'Invalid fields',
       });
     }
-    const jwtConfig = {
-      expiresIn: '7d',
-      algorithm: 'HS256',
-    };
-    const token = jwt.sign({ data: { userId: user.id } }, secret, jwtConfig);
+    const payload = { email, password };
+    const token = generateToken(payload);
+    
     res.status(200).json({ token });
   } catch (err) {
     return res.status(500);
