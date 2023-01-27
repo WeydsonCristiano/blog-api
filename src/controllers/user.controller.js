@@ -11,7 +11,6 @@ const postUser = async (req, res) => {
     }
 
     const payload = { displayName, email };
-    console.log('estou no pay', payload);
     const token = generateToken(payload);
 
     res.status(201).json({ token });
@@ -26,7 +25,16 @@ const getUser = async (req, res) => {
   return res.status(200).json(resp);
 };
 
+const getById = async (req, res) => {
+  const { id } = req.params;
+  const resp = await userService.getById(id);
+  console.log('estou no controler', id);
+  if (!resp) return res.status(404).json({ message: 'User does not exist' });
+  return res.status(200).json(resp);
+  };
+
 module.exports = {
   postUser,
   getUser,
+  getById,
 };

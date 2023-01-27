@@ -14,11 +14,17 @@ const getUsers = async () => {
   const fullUsers = await User.findAll({ attributes: { exclude: ['password'] } });
   return fullUsers;
 } catch (erro) {
-  return { type: 500, message: 'erro sei la' };
+  return { type: 500, message: erro };
 }
+};
+
+const getById = async (id) => {
+  const idUsers = await User.findByPk(id, { attributes: { exclude: ['password'] } });
+  return idUsers;
 };
  
 module.exports = {
     PostUser,
     getUsers,
+    getById,
 };
