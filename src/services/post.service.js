@@ -1,17 +1,15 @@
-const { PostCategory, Blogpost } = require('../models');
+const { PostCategory, BlogPost } = require('../models');
 
-const postForPost = async (id, { title, content, categoryIds }) => {
-  const post = await Blogpost.Create({ title, content, id });
-  console.log('estou na serv model com postagem', post);
+const postForPost = async (userId, { title, content, categoryIds }) => {
+  console.log('*********estou no id', userId);
+  console.log('*********estou no title', title);
+  console.log('*********estou no content', content);
+  console.log('*********estou no categoty', categoryIds);
+  const post = await BlogPost.create({ title, content, userId });
+  console.log('*********estou no post', post);
   const arrayNovo = categoryIds.map((item) => ({ postId: post.id, categoryIds: item }));
-  console.log('estou na serv model com arrayNovo', arrayNovo);
-  try {
-   const newPost = PostCategory.bulkcreate(arrayNovo);
-   console.log('estou na serv model com newPost', newPost);
-   return { type: '', message: newPost };
-  } catch (error) {
-return { type: 400, message: 'one or more "categoryIds" not found' };
-}
+  const newPost = PostCategory.bulkCreate(arrayNovo);
+  return { type: '', message: newPost };
 };
 
 module.exports = {

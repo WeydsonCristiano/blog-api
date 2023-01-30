@@ -10,7 +10,7 @@ const authenticateMiddleware = (req, res, next) => {
   
   try {
     const user = authenticateToken(token);
-    res.locals.user = user;
+    req.user = user;
   } catch (err) {
     return res.status(401).json({
       message: 'Expired or invalid token',
