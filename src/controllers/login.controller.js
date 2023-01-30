@@ -11,7 +11,8 @@ module.exports = async (req, res) => {
         message: 'Invalid fields',
       });
     }
-    const payload = { email, password };
+    const { id, displayName, image } = user;
+    const payload = { id, displayName, image };
     const token = generateToken(payload);
     
     res.status(200).json({ token });
