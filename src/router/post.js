@@ -8,7 +8,7 @@ const verifCreatPost = require('../middleWare/verifCreatPost');
 const routers = Router();
 
 routers.get('/', authenticateMiddleware, postController.getPost);
-routers.get('/:id');
+routers.get('/:id', authenticateMiddleware, postController.getPostId);
 routers.post('/', authenticateMiddleware, verifPost, verifCreatPost, postController.postForPost);
 
 module.exports = routers;

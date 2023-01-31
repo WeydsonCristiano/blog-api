@@ -36,7 +36,26 @@ const getPost = async () => {
   return response;
 };
 
+const getPostId = async (id) => {
+  const response = await BlogPost.findByPk(id, { include: [
+    {
+      model: User,
+      as: 'user',
+      attributes: {
+        exclude: ['password'],
+      },
+    },
+    {
+      model: Category,
+      as: 'categories',
+    },
+  ],
+});
+  return response;
+};
+
 module.exports = {
   postForPost,
   getPost,
+  getPostId,
 };
