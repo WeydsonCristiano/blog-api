@@ -7,14 +7,8 @@ const postForPost = async (Id, { title, content, categoryIds }) => {
     postId: post.id,
     categoryId: item,
   }));
-  const [newPost] = await PostCategory.bulkCreate(arrayNovo);
-  const result = newPost.dataValues.postId;
-  return {
-    id: result,
-    title,
-    content,
-    userId: Id,
-  };
+   await PostCategory.bulkCreate(arrayNovo);
+  return post;
 };
 
 const getPost = async () => {
