@@ -19,8 +19,18 @@ const getPostId = async (req, res) => {
   return res.status(200).json(resp);
 };
 
+const putPost = async (req, res) => {
+  const { id } = req.params;
+  const idUser = req.user.id;
+  const updat = req.body;
+  const resp = await postService.putPost(id, idUser, updat);
+  if (resp.type) return res.status(401).json({ message: resp.message });
+  return res.status(200).json(resp);
+};
+
 module.exports = {
   postForPost,
   getPost,
   getPostId,
+  putPost,
 };
