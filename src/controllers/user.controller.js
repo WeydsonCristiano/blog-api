@@ -34,8 +34,6 @@ const getById = async (req, res) => {
 
   const delUser = async (req, res) => {
     const { id } = req.user;
-    console.log(req.user);
-    console.log(id);
     await userService.delUser(id);
     return res.status(204).end();
   };

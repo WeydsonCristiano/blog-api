@@ -8,6 +8,7 @@ const verifCreatPost = require('../middleWare/verifCreatPost');
 const routers = Router();
 
 routers.get('/', authenticateMiddleware, postController.getPost);
+routers.get('/search', authenticateMiddleware, postController.searchPost);
 routers.get('/:id', authenticateMiddleware, postController.getPostId);
 routers.put('/:id', authenticateMiddleware, verifPut, postController.putPost);
 routers.delete('/:id', authenticateMiddleware, postController.deletePost);
