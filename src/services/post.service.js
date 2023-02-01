@@ -84,7 +84,6 @@ const searchPost = async (q) => {
       { model: Category, as: 'categories' },
       { model: User, as: 'user', attributes: { exclude: ['password'] } }],
   });
-console.log('*******estouaqui*****', query);
 return query;
 };
 

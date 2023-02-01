@@ -38,7 +38,6 @@ const deletePost = async (req, res) => {
 
 const searchPost = async (req, res) => {
   const { q } = req.query;
-  console.log('****query****', q);
   const resp = await postService.searchPost(q);
   return res.status(200).json(resp);
 };
