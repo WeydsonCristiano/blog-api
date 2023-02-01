@@ -64,9 +64,19 @@ const putPost = async (id, idUser, { title, content }) => {
     return resp;
 };
 
+const deletePost = async (id, idUser) => {
+  // const blog = await getPostId(id);
+  const resp = await BlogPost.findOne({ where: { id } });
+  if (!resp) return { type: 404, message: 'Post does not exist' };
+  if (resp.userId !== idUser) return { type: 401, message: 'Unauthorized user' };
+  const del = await BlogPost.destroy({ where: { id } });
+  return del;
+};
+
 module.exports = {
   postForPost,
   getPost,
   getPostId,
   putPost,
+  deletePost,
 };

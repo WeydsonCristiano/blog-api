@@ -28,9 +28,18 @@ const putPost = async (req, res) => {
   return res.status(200).json(resp);
 };
 
+const deletePost = async (req, res) => {
+  const { id } = req.params;
+  const idUser = req.user.id;
+  const resp = await postService.deletePost(id, idUser);
+  if (resp.type) return res.status(resp.type).json({ message: resp.message });
+  res.status(204).end();
+};
+
 module.exports = {
   postForPost,
   getPost,
   getPostId,
   putPost,
+  deletePost,
 };

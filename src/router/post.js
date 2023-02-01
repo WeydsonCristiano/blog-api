@@ -10,6 +10,7 @@ const routers = Router();
 routers.get('/', authenticateMiddleware, postController.getPost);
 routers.get('/:id', authenticateMiddleware, postController.getPostId);
 routers.put('/:id', authenticateMiddleware, verifPut, postController.putPost);
+routers.delete('/:id', authenticateMiddleware, postController.deletePost);
 routers.post('/', authenticateMiddleware, verifPost, verifCreatPost, postController.postForPost);
 
 module.exports = routers;
